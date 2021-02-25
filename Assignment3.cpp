@@ -37,12 +37,16 @@ int main(int argc, char* argv[])
     string sLine = "";
     string sSecretWord = "";
     string strWord;
+    
+    // Ask for username
     while (bRun)
     {
         int iChoice = 1;
         cout << "1: Select word from array" << endl;
         cout << "2: Select word from text file" << endl;
+        // Add highscore display from file
         cout << "3: Play letter Guess" << endl;
+        // Change username
         cout << "0: Exit" << endl;
         cout << "Please Select an Option\n";
         cin >> iChoice;
@@ -85,6 +89,7 @@ int main(int argc, char* argv[])
             else {
                 while (bGame) {
                     string sGuess;
+                    // Add hint prompt
                     cout << "\nEnter a letter or guess the word: \n";
                     cin >> sGuess;
                     bGame = checkGuess.CheckGuess(sGuess, sSecretWord);
