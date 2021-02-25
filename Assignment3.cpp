@@ -89,7 +89,7 @@ int main(int argc, char* argv[])
             else {
                 while (bGame) {
                     string sGuess;
-                    // Add hint prompt
+                    // Add hint prompt and guess limit check
                     cout << "\nEnter a letter or guess the word: \n";
                     cin >> sGuess;
                     bGame = checkGuess.CheckGuess(sGuess, sSecretWord);
