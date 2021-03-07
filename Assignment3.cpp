@@ -100,5 +100,8 @@ int main(int argc, char* argv[])
             bRun = false;
         }
     }
+    //This will create a log and say the date and time when the program was terminated.
+    Logger("Program was terminated");
+    
     return 0;
 }
