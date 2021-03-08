@@ -101,7 +101,7 @@ int main(int argc, char* argv[])
         }
     }
     //This will create a log and say the date and time when the program was terminated.
-    Logger("Program was terminated");
+    //Logger("Program was terminated");
     
     return 0;
 }

@@ -15,14 +15,14 @@ using namespace std;
 
 class Score{
 public:
+    Score();
     int HighScore(string, int);
     int ModifyScore(int);
     int GetScore();
     int GetHighScore(string);
     void ResetCurrentScore();
 private:
-    int iCurrentScore;
-    map<string, int> Map;
+
 };
 
 #endif

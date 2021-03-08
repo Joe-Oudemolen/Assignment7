@@ -14,8 +14,9 @@ using namespace std;
 
 class CheckLetter{
 public:
+	CheckLetter();
 	string CreateEmptiedString(string);
-	string Checkletter(char, string, string);
+	string CheckGuess(char, string, string);
 	int CheckCorrect(string, string);
 	string GiveHint(string, string);
 private:

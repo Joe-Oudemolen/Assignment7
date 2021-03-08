@@ -17,14 +17,19 @@ int main(){
     string emptiedStringTest = check.CreateEmptiedString(testword);
     cout << "Emptied String Test: " << emptiedStringTest << endl;
 
-    emptiedStringTest = check.Checkletter(rTest, testword, emptiedStringTest);
+    emptiedStringTest = check.CheckGuess(rTest, testword, emptiedStringTest);
     cout << "should have an R: " << emptiedStringTest << endl;
+    check.CheckCorrect(testword, emptiedStringTest);
+    cout << "Score Test: " << score.GetScore() << endl;
 
-    emptiedStringTest = check.Checkletter(llTest, testword, emptiedStringTest);
+    emptiedStringTest = check.CheckGuess(llTest, testword, emptiedStringTest);
     cout << "should have an R and two L's: " << emptiedStringTest << endl;
+    check.CheckCorrect(testword, emptiedStringTest);\
     
-    emptiedStringTest = check.Checkletter(incorrectTest, testword, emptiedStringTest);
+    cout << "Score Test: " << score.GetScore() << endl;
+
+    emptiedStringTest = check.CheckGuess(incorrectTest, testword, emptiedStringTest);
     cout << "should not have changes: " << emptiedStringTest << endl;
 
-    
+
 }

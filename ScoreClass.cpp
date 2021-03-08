@@ -10,6 +10,13 @@
 #include "score.h"
 using namespace std;
 
+int iCurrentScore;
+map<string, int> Map;
+
+Score::Score(){
+    iCurrentScore = 0;
+}
+
 int Score::ModifyScore(int iScoreOption){
     /* Scoring options / Primarily used by the checkcorrect function
     0: Incorrect Guess
@@ -22,11 +29,12 @@ int Score::ModifyScore(int iScoreOption){
     int iScoringArray[5] = {-5, 100, 20, -30, 0};
 
     //Sets the option to zero points if not an applicable input
-    if (iScoreOption > iMaxOption && iScoreOption < 0){
+    if (iScoreOption > iMaxOption || iScoreOption < 0){
         iScoreOption = iMaxOption;
     }
     //adds or removes points based on choice
     iCurrentScore += iScoringArray[iScoreOption];
+    return iCurrentScore;
 }
 
 // returns score

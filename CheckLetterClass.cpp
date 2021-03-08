@@ -11,6 +11,9 @@
 #include "Score.h"
 using namespace std;
 Score score;
+CheckLetter::CheckLetter(){
+
+}
 
 //creates a string of dashes, the string will be used to keep track of players correct guesses.
 string CheckLetter::CreateEmptiedString(string sSecretWord){
@@ -23,7 +26,7 @@ string CheckLetter::CreateEmptiedString(string sSecretWord){
 
 //using the secret word, the guessed character, and string of dashes as input
 //it replaces the proper dashes in the emptiedString with the guessed letter 
-string CheckLetter::Checkletter(char cGuess, string sSecretWord, string sEmptiedString){
+string CheckLetter::CheckGuess(char cGuess, string sSecretWord, string sEmptiedString){
     
     //input emptiedstring is added to a private variable to be used in the check correct later.
     cPreviousGuess = cGuess;
@@ -41,6 +44,7 @@ string CheckLetter::Checkletter(char cGuess, string sSecretWord, string sEmptied
 //it also checks if the string is completed and gives appropriate points if game is won
 //this function returns ints for the UI to know if the guess was correct or if the game is won 
 int CheckLetter::CheckCorrect(string sSecretWord, string sEmptiedString){
+    cout << sPreviousEmptiedString << endl;
     if (sPreviousEmptiedString == sEmptiedString){
         score.ModifyScore(0);
         return 0;
@@ -65,5 +69,5 @@ string CheckLetter::GiveHint(string sSecretWord, string sEmptiedString){
             return sEmptiedString;
         }
     }
-    
+    return sEmptiedString;
 }
