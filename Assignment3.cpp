@@ -123,11 +123,11 @@ int main(int argc, char* argv[])
                             iGuesses++;
                         }
                         else if (iCheckReturn == 1) {
-                            cout << "You guess all the letters!" << endl << "You win!" << endl << "Final score: " << Score().HighScore(sUsername, Score().GetScore()) << endl;
+                            cout << "You guess all the letters!" << endl << "You win!" << endl << "Final score: " << GetHighScore.HighScore(sUsername, GetHighScore.GetScore()) << endl;
                             bRun = false;
                         }
                         else if (iCheckReturn == 2) {
-                            cout << "Thats correct" << endl;
+                            cout << "Thats correct. Score: " << GetHighScore.GetScore() << endl;
                         }
 
                         cout << sEmptiedString << endl;
@@ -142,7 +142,7 @@ int main(int argc, char* argv[])
                     }
                     else {
                         bRun = false;
-                        cout << "You are out of guesses" << endl << "Game over" << endl << "Final score: " << Score().HighScore(sUsername, Score().GetScore()) << endl;
+                        cout << "You are out of guesses" << endl << "Game over" << endl << "Final score: " << GetHighScore.HighScore(sUsername, GetHighScore.GetScore()) << endl;
                     }
                 }
                 //Reset bRun to allow the main menu to continue functioning
