@@ -35,10 +35,10 @@ int main(int argc, char* argv[])
     //run in loop to continue asking for a choice
     bool bRun = true;
     bool bGame = true;
-    int iGuessCorrect=0;
-    int iGameMatches=0;
+    int iGuessCorrect = 0;
+    int iGameMatches = 0;
     int iGuesses = 0;
-    int iGuessLimit=10;
+    int iGuessLimit = 10;
     string sLine = "";
     string sSecretWord = "";
     string sInput;
@@ -70,7 +70,7 @@ int main(int argc, char* argv[])
             //check the number that was entered
             if (iChoice > 0 && iChoice <= 12) {
                 //cout << showWord.getWord(iChoice) << "\n";
-                sSecretWord = showWord.getWord(iChoice); 
+                sSecretWord = showWord.getWord(iChoice);
             }
 
             else if (iChoice < 0 || iChoice > 12) {
@@ -83,8 +83,8 @@ int main(int argc, char* argv[])
         }
 
         else if (iChoice == 2) {
-            int iPick=0;
-            
+            int iPick = 0;
+
             vector<string> vWords = readFile.ReadWordList();
 
             cout << "\nPick a number from the word list 1-4\n";
@@ -94,17 +94,19 @@ int main(int argc, char* argv[])
             sSecretWord = vWords[iPick - 1];
         }
         else if (iChoice == 3) {
-            cout << Score().GetHighScore(sUsername) << endl;
+            cout << sUsername << " has a score of: " << Score().GetHighScore(sUsername) << endl;
         }
         else if (iChoice == 4) {
+            bGame = true;
             if (sSecretWord == "") {
                 cout << "\nYou must select a word first\n" << endl;
             }
-            else{
+            else {
                 //Display blank word and process first guess of the game
                 Score().ResetCurrentScore();
+                iGuesses = 0;
                 sEmptiedString = checkLetter.CreateEmptiedString(sSecretWord);
-                cout << "Enter a letter to guess it" << endl << "Enter 'hint' to get a free letter and lose some points" << endl << "The game ends when you have guessed every letter." << endl << "You only get 10 incorrect guesses." <<endl<<endl;
+                cout << "Enter a letter to guess it" << endl << "Enter 'hint' to get a free letter and lose some points" << endl << "The game ends when you have guessed every letter." << endl << "You only get 10 incorrect guesses." << endl << endl;
                 cout << sEmptiedString << endl;
                 cin >> sInput;
 
@@ -115,21 +117,8 @@ int main(int argc, char* argv[])
                     sEmptiedString = checkLetter.CheckGuess(sInput[0], sSecretWord, sEmptiedString);
                 }
 
-                while (bRun) {
-                    if (iGuesses != iGuessLimit) {
-                        int iCheckReturn = checkLetter.CheckCorrect(sSecretWord, sEmptiedString);
-                        if (iCheckReturn == 0) {
-                            cout << "That is not a letter" << endl;
-                            iGuesses++;
-                        }
-                        else if (iCheckReturn == 1) {
-                            cout << "You guess all the letters!" << endl << "You win!" << endl << "Final score: " << GetHighScore.HighScore(sUsername, GetHighScore.GetScore()) << endl;
-                            bRun = false;
-                        }
-                        else if (iCheckReturn == 2) {
-                            cout << "Thats correct. Score: " << GetHighScore.GetScore() << endl;
-                        }
-
+                while (bGame) {
+                    if (iGuesses != iGuessLimit) {                      
                         cout << sEmptiedString << endl;
                         cin >> sInput;
 
@@ -139,14 +128,24 @@ int main(int argc, char* argv[])
                         else {
                             sEmptiedString = checkLetter.CheckGuess(sInput[0], sSecretWord, sEmptiedString);
                         }
+                        int iCheckReturn = checkLetter.CheckCorrect(sSecretWord, sEmptiedString);
+                        if (iCheckReturn == 0) {
+                            cout << "That is not a letter" << endl;
+                            iGuesses++;
+                        }
+                        else if (iCheckReturn == 1) {
+                            cout << "You guess all the letters!" << endl << "You win!" << endl << "Final score: " << GetHighScore.HighScore(sUsername, GetHighScore.GetScore()) << endl;
+                            bGame = false;
+                        }
+                        else if (iCheckReturn == 2) {
+                            cout << "Thats correct. Score: " << GetHighScore.GetScore() << endl;
+                        }
                     }
                     else {
-                        bRun = false;
+                        bGame = false;
                         cout << "You are out of guesses" << endl << "Game over" << endl << "Final score: " << GetHighScore.HighScore(sUsername, GetHighScore.GetScore()) << endl;
                     }
                 }
-                //Reset bRun to allow the main menu to continue functioning
-                bRun = true;
             }
         }
         else if (iChoice == 5) {
@@ -159,6 +158,6 @@ int main(int argc, char* argv[])
     }
     //This will create a log and say the date and time when the program was terminated.
     //Logger("Program was terminated");
-    
+
     return 0;
 }
