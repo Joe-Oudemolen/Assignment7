@@ -47,12 +47,20 @@ int Score::HighScore(string sName, int iInputScore){
     if(Map[sName] < iInputScore){
         Map[sName] = iInputScore;
     }
+    //prints out the users name
+    for (auto& t : Map)
+        std::cout << t.first << ", ";
+    
     //returns the current high score as an int
     return Map[sName];
 }
 
 //returns the current high score as an int
 int Score::GetHighScore(string sName){
+    //prints out the users name
+    for (auto& t : Map)
+        std::cout << t.first << ": ";
+    
     return Map[sName];
 }
 
