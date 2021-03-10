@@ -49,7 +49,7 @@ int Score::HighScore(string sName, int iInputScore){
     }
     //prints out the users name
     for (auto& t : Map)
-        std::cout << t.first << ", ";
+        cout << t.first << ", ";
     
     //returns the current high score as an int
     return Map[sName];
@@ -59,7 +59,7 @@ int Score::HighScore(string sName, int iInputScore){
 int Score::GetHighScore(string sName){
     //prints out the users name
     for (auto& t : Map)
-        std::cout << t.first << ": ";
+        cout << t.first << ": ";
     
     return Map[sName];
 }
