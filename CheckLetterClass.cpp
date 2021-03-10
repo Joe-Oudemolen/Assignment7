@@ -44,7 +44,7 @@ string CheckLetter::CheckGuess(char cGuess, string sSecretWord, string sEmptiedS
 //it also checks if the string is completed and gives appropriate points if game is won
 //this function returns ints for the UI to know if the guess was correct or if the game is won 
 int CheckLetter::CheckCorrect(string sSecretWord, string sEmptiedString){
-    cout << sPreviousEmptiedString << endl;
+    //cout << sPreviousEmptiedString << endl;
     if (sPreviousEmptiedString == sEmptiedString){
         score.ModifyScore(0);
         return 0;

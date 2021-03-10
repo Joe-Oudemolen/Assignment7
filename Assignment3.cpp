@@ -28,7 +28,8 @@ int main(int argc, char* argv[])
 
     Show showWord;
     Read readFile;
-    CheckLetter CheckGuess, CreateEmptiedString, CheckCorrect, GiveHint;
+    CheckLetter checkLetter;
+    //CheckLetter CheckGuess, CreateEmptiedString, CheckCorrect, GiveHint;
     Score GetHighScore;
 
     //run in loop to continue asking for a choice
@@ -102,21 +103,21 @@ int main(int argc, char* argv[])
             else{
                 //Display blank word and process first guess of the game
                 Score().ResetCurrentScore();
-                sEmptiedString = CheckLetter().CreateEmptiedString(sSecretWord);
+                sEmptiedString = checkLetter.CreateEmptiedString(sSecretWord);
                 cout << "Enter a letter to guess it" << endl << "Enter 'hint' to get a free letter and lose some points" << endl << "The game ends when you have guessed every letter." << endl << "You only get 10 incorrect guesses." <<endl<<endl;
                 cout << sEmptiedString << endl;
                 cin >> sInput;
 
                 if (sInput == "hint") {
-                    sEmptiedString = CheckLetter().GiveHint(sSecretWord, sEmptiedString);
+                    sEmptiedString = checkLetter.GiveHint(sSecretWord, sEmptiedString);
                 }
                 else {
-                    sEmptiedString = CheckLetter().CheckGuess(sInput[0], sSecretWord, sEmptiedString);
+                    sEmptiedString = checkLetter.CheckGuess(sInput[0], sSecretWord, sEmptiedString);
                 }
 
                 while (bRun) {
                     if (iGuesses != iGuessLimit) {
-                        int iCheckReturn = CheckLetter().CheckCorrect(sSecretWord, sEmptiedString);
+                        int iCheckReturn = checkLetter.CheckCorrect(sSecretWord, sEmptiedString);
                         if (iCheckReturn == 0) {
                             cout << "That is not a letter" << endl;
                             iGuesses++;
@@ -133,10 +134,10 @@ int main(int argc, char* argv[])
                         cin >> sInput;
 
                         if (sInput == "hint") {
-                            sEmptiedString = CheckLetter().GiveHint(sSecretWord, sEmptiedString);
+                            sEmptiedString = checkLetter.GiveHint(sSecretWord, sEmptiedString);
                         }
                         else {
-                            sEmptiedString = CheckLetter().CheckGuess(sInput[0], sSecretWord, sEmptiedString);
+                            sEmptiedString = checkLetter.CheckGuess(sInput[0], sSecretWord, sEmptiedString);
                         }
                     }
                     else {
