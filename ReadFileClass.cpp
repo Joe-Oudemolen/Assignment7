@@ -1,16 +1,18 @@
-#include <iostream>
-#include <locale>
 /* Names - Joe Barron, Joe Oudemolen, Jesse Hamman
-* Purpose - Create a list of words and ask the user to enter a number to display a word from the array.
-*           Use a command line argument to display information about th program.
-* Assignment 3
-* Date - 2/07/2021
+* Purpose - Create a letter guessing game that allows a user to randomly pick a word and then play a guessing game.  The user will earn points for guessing correctly.
+* Assignment 6
+* CIS 227.6800.W21
+* Date - 3/09/2021
 *
 */
 
+#include <iostream>
+#include <locale>
 #include <cctype>
 #include <fstream>
 #include <string>
+#include <QFile>
+#include <QTextStream>
 #include "Read.h"
 
 using namespace std;
@@ -22,16 +24,21 @@ vector<string> Read::ReadWordList()
     string sLine;
     ifstream MyFile;
 
-    //open the file
-    MyFile.open("RandomWords.txt");
+    QFile File("C:\\Users\\jhamm\\Desktop\\GRCC\\CIS 227 C++ 2\\Assign7\\RandomWords.txt");
 
-    if (MyFile.is_open())
+    QString qsLine;
+
+    if (File.open(QIODevice::ReadOnly))
     {
-        while (getline(MyFile, sLine))
+        QTextStream in(&File);
+        while (!in.atEnd())
         {
-            vRandWords.push_back(sLine);//puts words from the file into the vector
+             qsLine = in.readLine();
+             sLine = qsLine.toStdString();
+             vRandWords.push_back(sLine);
+
         }
-        MyFile.close();
+        File.close();
     }
 
 
