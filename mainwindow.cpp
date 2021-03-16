@@ -5,6 +5,11 @@
 #include <locale>
 #include <cctype>
 #include <string>
+#include <QObject>
+#include <QPlainTextEdit>
+#include <QFile>
+#include <QTextStream>
+#include <QDateTime>
 #include "Assignment2.h"
 #include "CheckLetter.h"
 #include "Log.h"
@@ -19,7 +24,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->txtName->setPlaceholderText("Enter Name");
-
 
 }
 
@@ -129,6 +133,19 @@ void MainWindow::on_pbtnGuess_clicked()
             else if (iCheckReturn == 1) {
                 this->ui->lblCheck->setText("You guessed all the letters, You Win! Final Score: "+ highscore);
                 //Logger("Game Won.");
+
+                QFile LogFile("C:\\Users\\jhamm\\Desktop\\GRCC\\CIS 227 C++ 2\\Assign7\\LogFile.txt");
+
+                  if(LogFile.open(QFile::WriteOnly | QFile::Text)){
+
+                  QTextStream out(&LogFile);
+
+                  QString qsLogMessage = QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm:ss ") + "Game Won";
+                  out << qsLogMessage;
+                  LogFile.flush();
+
+                  LogFile.close();
+                  }
 
             }
             else if (iCheckReturn == 2) {
